@@ -1,0 +1,42 @@
+
+@import "~bootstrap/scss/bootstrap";
+body{
+
+}
+.img{
+  background-image: url("https://www.voyage-insolite.com/files/2014/02/nothofagus_hotel.jpeg");
+  background-size: cover;
+  filter: blur(15px);
+  height: 100vh;
+}
+.text1{
+  position: absolute;
+  z-index: 1;
+  align-items: center;
+  display: flex;
+  margin-left: 32vh;
+}
+.para1{
+  position: absolute;
+  z-index: 1;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  font-size: 30px;
+  justify-content: center;
+  margin-top: 20vh;
+  text-shadow: 1px 1px white;
+}
+
+.img2{
+  background-image: url("https://cdn-icons-png.flaticon.com/512/5038/5038308.png");
+  background-size: cover;
+  height: 39vh;
+  width: 22vw;
+  position: absolute;
+  z-index: 1;
+  margin-top: 45vh;
+}
+.textcontain{
+  width: 100vw;
+}
