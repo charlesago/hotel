@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+
+
+    {{ form_start(formName) }}
+    {{ form_row(formName.username) }}
+    {{ form_row(formName.email) }}
+    {{ form_row(formName.firstName) }}
+    {{ form_row(formName.lastName) }}
+    <input type="submit">
+    {{ form_end(formName) }}
+
+{% endblock %}
