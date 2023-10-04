@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GateauController!{% endblock %}
+
+{% block body %}
+
+{{ form_start(formRoom) }}
+{{ form_row(formRoom.name) }}
+    {{ form_row(formRoom.description) }}
+    <ul class="images"
+        data-index="{{ formRoom.image|length > 0 ? formRoom.image|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(formRoom.image.vars.prototype)|e('html_attr') }}"
+    ></ul>
+    <button type="button" class="add_item_link btn btn-success" data-collection-holder-class="images">Add Images</button>
+
+    <script>
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+            const item = document.createElement('li');
+
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+
+            collectionHolder.appendChild(item);
+
+            collectionHolder.dataset.index++;
+        };
+        document
+            .querySelectorAll('.add_item_link')
+            .forEach(btn => {
+                btn.addEventListener("click", addFormToCollection)
+            });
+    </script>
+
+<input type="submit" class="btn btn-success">
+{{ form_end(formRoom) }}
+{% endblock %}

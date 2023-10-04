@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RoomController!{% endblock %}
+
+{% block body %}
+<div class="mt-5">
+    <h1>Tout les produits</h1>
+
+</div>
+
+<div class="container mt-5  ">
+    <div class="row justify-content-center">
+        {% for room in rooms %}
+
+            <div class=" ">
+                <h1>{{ room.name }}</h1>
+                <p>{{ room.description }}</p>
+            </div>
+        <a href="{{ path('show_room', {id:room.id}) }}" class="btn btn-primary ">Voir le produit </a>
+
+{% endfor %}
+    </div>
+        </div>
+{% endblock %}

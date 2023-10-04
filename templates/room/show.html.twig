@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GateauController!{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div class="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading mt-5  ">
+                    <div class="line-dec"></div>
+                    <h1>{{ room.name }}</h1>
+                    <h6 class="fs-3" >  12€</h6>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-slider">
+                    <div id="slider" class="flexslider">
+                        <ul class="slides border border-radius-black border-5 d-flex justify-content-center">
+
+
+                            <img src="{{ vich_uploader_asset(room.image, 'imageFile')}}" style="width: 300px">
+
+
+                            <!-- items mirrored twice, total of 12 -->
+                        </ul>
+                    </div>
+                    <div id="carousel" class="flexslider " style="display: flex">
+                        <ul class="slides " style="display: flex">
+                            {% for image in room.image %}
+
+                                <img src="{{ vich_uploader_asset(image, 'imageFile')}}" style="width: 100px">
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right-content">
+                    <h4>{{ room.name }}</h4>
+                    <br>
+                    <h6 style="text-decoration: black">Category: <span></span></h6>
+
+                    <div class="colum d-flex" style="display: flex; flex-direction: column" >
+                        <label for="quantity">Quantité:</label>
+
+                    </div>
+                    <p class="mt-5">{{ room.description}} </p>
+
+
+                    <div class="down-content">
+                        <div class="categories">
+                        </div>
+                        <div class="share">
+                            <h6>Share: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

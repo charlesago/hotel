@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImageController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {% for image in room.image %}
+
+
+            <div class="col-4">
+            </div>
+
+        {% endfor %}
+
+    </div>
+    {{ form_start(form, {'action': path('app_image_room_add', {id:room.id}), 'method': 'POST'}) }}
+    {{ form_widget(form.imageFile)}}
+    <button type="submit" class="btn btn-success">OK</button>
+    {{ form_end(form) }}
+
+{% endblock %}
