@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
-    #[Route('/{id}', name: 'app_image_index')]
+    #[Route('image/{id}', name: 'app_image_index')]
     public function index(Room $room): Response
     {
         $image = new Image();

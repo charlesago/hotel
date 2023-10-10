@@ -41,6 +41,7 @@
 
                     {% else %}
 
+
                         <li class="nav-item me-3 ms-3">
                             <a class="nav-link btn " href="{{ path('app_register') }}"><strong>REGISTER</strong></a>
                         </li>
@@ -49,6 +50,17 @@
                             <a class="nav-link btn " href="{{ path('app_login') }}"><strong>LOGIN</strong></a>
                         </li>
 
+                    {% endif %}
+                    {% if app.user %}
+
+                    {% if "ROLE_ADMIN" in app.user.roles %}
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('create_room') }}">create</a>
+                        </li>
+
+                    {% endif %}
                     {% endif %}
                 </ul>
             </div>

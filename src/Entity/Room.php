@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
@@ -19,8 +21,19 @@ class Room
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms', targetEntity: Image::class, cascade:["persist"])]
-    private Collection $image;
+    #[ORM\ManyToMany(targetEntity: Equipement::class, mappedBy: 'rooms')]
+    private Collection $equipements;
+
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class, orphanRemoval: true)]
+    private Collection $bookings;
+
+    public function __construct()
+    {
+        $this->equipements = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -50,15 +63,64 @@ class Room
         return $this;
     }
 
-    public function getImage(): ?Image
+    /**
+     * @return Collection<int, Equipement>
+     */
+    public function getEquipements(): Collection
     {
-        return $this->image;
+        return $this->equipements;
     }
 
-    public function setImage(?Image $image): static
+    public function addEquipement(Equipement $equipement): static
     {
-        $this->image = $image;
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements->add($equipement);
+            $equipement->addRoom($this);
+        }
 
         return $this;
     }
+
+    public function removeEquipement(Equipement $equipement): static
+    {
+        if ($this->equipements->removeElement($equipement)) {
+            $equipement->removeRoom($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getRoom() === $this) {
+                $booking->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
 }

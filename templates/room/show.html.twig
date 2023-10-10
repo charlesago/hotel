@@ -24,7 +24,6 @@
                         <ul class="slides border border-radius-black border-5 d-flex justify-content-center">
 
 
-                            <img src="{{ vich_uploader_asset(room.image, 'imageFile')}}" style="width: 300px">
 
 
                             <!-- items mirrored twice, total of 12 -->
@@ -32,11 +31,7 @@
                     </div>
                     <div id="carousel" class="flexslider " style="display: flex">
                         <ul class="slides " style="display: flex">
-                            {% for image in room.image %}
 
-                                <img src="{{ vich_uploader_asset(image, 'imageFile')}}" style="width: 100px">
-
-                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -45,14 +40,11 @@
                 <div class="right-content">
                     <h4>{{ room.name }}</h4>
                     <br>
-                    <h6 style="text-decoration: black">Category: <span></span></h6>
-
-                    <div class="colum d-flex" style="display: flex; flex-direction: column" >
-                        <label for="quantity">Quantité:</label>
+                    <div>
+                        <h5>Description</h5>
+                        <p class="mt-1">{{ room.description}} </p>
 
                     </div>
-                    <p class="mt-5">{{ room.description}} </p>
-
 
                     <div class="down-content">
                         <div class="categories">
@@ -65,7 +57,23 @@
             </div>
         </div>
 
+
     </div>
+    <div class="container row">
+    <div class="col-10">
+        <div>
+        <h5 class="mt-5">Equipements</h5>
+        </div>
+        <div>
+        <p class="mt-4"> - {{ equipement.name }}</p>
 
+        </div>
 
+    </div>
+    </div>
+    {% if app.user %}
+        <a href="{{ path('app_room_book',{id:room.id}) }}" class="btn btn-success">Faire une reservation dans cette chambre</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="btn btn-success">Faire une reservation dans cette chambre</a>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos auberges{% endblock %}
+
+{% block body %}
+
+    {{ form_start(bookForm) }}
+    {{ form_row(bookForm.arrivedDate) }}
+    {{ form_row(bookForm.leavingDate) }}
+
+
+    <button class="btn btn-success" type="submit">Réserver</button>
+    {{ form_end(bookForm) }}
+
+{% endblock %}

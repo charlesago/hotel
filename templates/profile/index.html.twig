@@ -3,15 +3,17 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
+
     <div class="container row ">
-        {% for user in users %}
+        {% for userprofile in profile %}
 
             <h1>Bienvenue sur votre profil</h1>
 
-            <p>{{ user.profile.username }}</p>
-            <p>{{ user.profile.email }}</p>
-            <p>{{ user.profile.firstName }}</p>
-            <p>{{ user.profile.lastName }}</p>
+            <p>{{ userprofile.username}}</p>
+            <p>{{ userprofile.email }}</p>
+            <p>{{ userprofile.profile.firstname }}</p>
+            <p>{{ userprofile.profile.lastName }}</p>
+
 
             <a href="{{ path('update_profile') }}" class="btn btn-success">Update</a>
 

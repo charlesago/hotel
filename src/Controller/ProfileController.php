@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Form\ProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,11 +17,9 @@ class ProfileController extends AbstractController
     #[Route('/myprofile', name: 'app_profile')]
     public function index(UserRepository $userRepository): Response
     {
-        $user= $userRepository->findAll();
-
+        $profile= $userRepository->findAll();
         return $this->render('profile/index.html.twig', [
-            'users'=>$user,
-
+            'profile'=>$profile,
 
         ]);
     }
